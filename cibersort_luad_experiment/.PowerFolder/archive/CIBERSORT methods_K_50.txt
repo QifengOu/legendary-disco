@@ -1,0 +1,44 @@
+####### CIBERSORT LUAD Data ########
+
+#### Aim #####
+
+Will use the online CIBERSORT tool to check for immune cell abundence using their published method.
+- Going to input the whole TCGA data for LUAD
+- Then will delinate by mutation
+
+##### Method ######
+
+First the input files were put inot the correct format as below:
+The input files are from M:\Richard B\TCGA_data\Pancancer\gene_expression_quick_comparisons which have the MT aligned data.
+- These files are 'rna_seq_rsem_EL_expression_detailed_specific_mt_aligned.csv' & 'rna_seq_zscore_EL_expression_detailed_specific_mt_aligned.csv'.
+- Then edited to just remove the formatting and save as a .txt file (in 'Mixture' format) for CIBERSORT upload, called: 'rsem_cibersort_input.txt' and 'zscore_cibersort_input.txt'
+
+Then were uploaded to the cibersort website (cibersort.stanford.edu) as Mixture files.
+
+Both RSEM and zscores were run using 100 and 1000 permutations.
+- Believe that RSEM should be a better measure here...
+
+ERROR: with zscore input as lines with NA.
+- Tried deleting all lines with NA but too difficult without R so not using zscores
+- After this I deleted 'rna_seq_zscore....csv' and 'zscore_cibersort_input.txt' to save space.
+- Excluded from further analysis.
+
+The 1000 permutation data were then downloaded as a CSV from the CIBERSORT website and mutations aligned to the df using the 'cibersort_merge_stanford_data.R' script.
+- These merged data were saved as 'cibersort_1000_permutations_output_merged.csv' in the /Output/RSEM folder
+- As all Naive CD4 data were 0, these data were not included in the following analysis
+
+Data from this file were then analysed using GraphPad Prism 8 - analysis file in the /Output/RSEM folder called 'RSEM_Cibersort_Prism_Analysis'.
+
+
+####### Results ########
+
+Interesting results (with significant changes):
+- Plasma cells
+- Tfh
+- Tregs
+- Resting NK Cells
+- M1 Macrophages
+- Resting DCs
+- Activated DCs
+- Resting Mast Cells
+- Neutrophils
